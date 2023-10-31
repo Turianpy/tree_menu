@@ -1,0 +1,13 @@
+{% load i18n admin_urls menu_tags %}
+
+{% recur menu_item as menu %}
+<li>
+    <a href="{% url 'admin:menu_menuitem_change' menu.menu_item.id %}">{{ menu.menu_item.name }}</a>
+    {% if menu.children %}
+        <ul>
+            {% for child in menu.children %}
+                {% include "admin/menu/menuitem_subtree.html" with menu_item=child %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
