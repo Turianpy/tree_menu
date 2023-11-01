@@ -4,6 +4,14 @@ A simple tree menu implementation in Django.
 
 ## To run
 
+Clone the repo
+
+[Optional] create a virtual env
+
+```bash
+python3 -m venv venv
+```
+
 In the terminal, run either:
     
 ```bash
