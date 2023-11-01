@@ -6,7 +6,7 @@ A simple tree menu implementation in Django.
 
 Clone the repo
 
-[Optional] create a virtual env
+[Optional] create a virtual env in the project directory
 
 ```bash
 python3 -m venv venv
@@ -21,7 +21,7 @@ pip install django
 
 the app has no requirements other than django itself
 
-then, populate the db with demo data by running:
+then, cd into the directory with manage.py and populate the db with demo data by running:
 
 ```bash
 python manage.py demo_db
