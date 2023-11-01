@@ -33,4 +33,4 @@ and run the server:
 python manage.py runserver
 ```
 
-You can access the demo menu at localhost/gpus
+You can access the demo menu at localhost:8000/gpus
