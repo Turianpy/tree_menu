@@ -1,13 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     var expandables = document.querySelectorAll('.expandable');
-    expandables.forEach(function(expandable) {
-        expandable.addEventListener('click', function(event) {
-            var children = this.querySelector('.children');
-            if (children != null) {
-                children.style.display = children.style.display == 'none' ? 'block' : 'none';
-            }
-            event.stopPropagation();
+    expandables.forEach((expandable) => {
+        var toggle = expandable.querySelector('.toggle');
+        var has_children = expandable.querySelector('.children') != null;
+        if (expandable.classList.contains('expanded') && has_children) {
+            toggle.textContent = '-';
+        }
+        toggle.addEventListener('click', function(event) {
             event.preventDefault();
+            if (has_children == false) {
+                return;
+            }
+            expandable.classList.toggle('expanded');
+            toggle.textContent = expandable.classList.contains('expanded') ? '-' : '+';
         });
     });
 });

@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.urls import reverse
 
 
 class Menu(models.Model):
@@ -9,8 +8,9 @@ class Menu(models.Model):
         verbose_name='Название меню',
         unique=True
     )
-    slug = models.SlugField(max_length=100, verbose_name='Slug', null=True)
-    named_url = models.CharField(max_length=255, verbose_name='Именованный URL', blank=True)
+    named_url = models.CharField(
+        max_length=255, verbose_name='Именованный URL', blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -26,6 +26,7 @@ class MenuItem(models.Model):
         Menu, related_name='items',
         on_delete=models.CASCADE, verbose_name='Меню'
     )
+    slug = models.SlugField(max_length=100, verbose_name='Slug', null=True)
     parent = models.ForeignKey(
         'self', related_name='children',
         on_delete=models.CASCADE, blank=True, null=True
@@ -36,7 +37,6 @@ class MenuItem(models.Model):
         blank=True
     )
     url = models.CharField(max_length=255, verbose_name='Ссылка', blank=True)
-    order = models.PositiveIntegerField(default=0, verbose_name='Порядок')
     level = models.IntegerField(default=0, verbose_name='Уровень')
 
     def __str__(self) -> str:
@@ -52,11 +52,6 @@ class MenuItem(models.Model):
             raise ValidationError(
                 "Please specify EITHER a URL OR a named URL, not both."
             )
-
-    def get_url(self):
-        if self.named_url:
-            return reverse(self.named_url)
-        return self.url or '/'
 
     def save(self, *args, **kwargs):
         self.level = self.parent.level + 1 if self.parent else 0

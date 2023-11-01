@@ -1,0 +1,42 @@
+html, body, main {
+    height: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+h1, p {
+    margin: 3rem;
+}
+
+.expandable {
+    list-style-type: none;
+}
+
+.toggle {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.expandable.active > a {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+}
+
+.children {
+    display: none;
+}
+
+.expanded {
+    display: block
+}
+
+.expanded > .children {
+    display: block;
+}
+
+.expanded > .toggle {
+    content: '-';
+}

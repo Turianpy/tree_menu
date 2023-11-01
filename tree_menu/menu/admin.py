@@ -35,7 +35,7 @@ class MenuItemAdmin(admin.ModelAdmin):
 
 
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'named_url')
+    list_display = ('name', 'named_url')
     search_fields = ('name',)
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -46,6 +46,7 @@ class MenuAdmin(admin.ModelAdmin):
         return super().change_view(
             request, object_id, form_url, extra_context=extra_context,
         )
+
 
 admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(Menu, MenuAdmin)
