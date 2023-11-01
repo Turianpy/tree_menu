@@ -1,0 +1,16 @@
+{% load menu_tags %}
+{% load custom_filters %}
+<ul>
+{% for item in items %}
+    {% get_url item as item_url %}
+    <li class="expandable {% if request.path|endswith:item.slug %}active{% endif %} {% if item.slug in request.path %}expanded{% endif %}">
+        <span class="toggle">+</span>
+        <a href="{{ item_url }}">{{ item.name }}</a>
+        {% if item.desc %}
+            <div class="children">
+                {% include 'menu.html' with items=item.desc %}
+            </div>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
