@@ -6,10 +6,10 @@ A simple tree menu implementation in Django.
 
 In the terminal, run either:
     
-    ```bash
-    pip install -r requirements.txt
-    pip install django
-    ```
+```bash
+pip install -r requirements.txt
+pip install django
+```
 
     the app has no requirements other than django itself
 
